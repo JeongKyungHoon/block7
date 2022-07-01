@@ -65,3 +65,12 @@ console.log(Math.round(3.4123));
 console.log(Math.round(3.8123));
 // 제곱근
 console.log(Math.sqrt(9));
+
+// 정규표현식
+const testStr = "aabertasdfaaetestaa";
+const reg1 = /aa/gi;
+const reg2 = new RegExp("aa", "ig");
+
+console.log(testStr.match(reg1));
+console.log(testStr.search(reg1));
+console.log(testStr.match(reg2));
