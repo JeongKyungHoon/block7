@@ -8,3 +8,5 @@ newElem.innerHTML += 1;
 newElem.style.height = "50px";
 newElem.style.backgroundColor = "black";
 newElem.style.color = "white";
+const tempElem = document.querySelector(".querySelector");
+console.log(document.querySelector(".querySelector").children[0].innerHTML);
