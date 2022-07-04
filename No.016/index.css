@@ -1,0 +1,11 @@
+#classList {
+  width: 100px;
+  height: 100px;
+  background-color: azure;
+  border: 1px solid black;
+  transition: background-color ease 1s;
+}
+
+#classList.classList {
+  background-color: blueviolet;
+}
