@@ -93,3 +93,18 @@ import { promises as fsProm } from "fs";
 // const readStreamPipe = fs.createReadStream("./writeStream.txt");
 // const writeStreamPipe = fs.createWriteStream("./pipeStream");
 // readStreamPipe.pipe(writeStreamPipe);
+
+// 큰 파일 버퍼로 복사
+console.log("before: ", process.memoryUsage().rss);
+const data1 = fs.readFileSync("./big.txt");
+fs.writeFileSync("./big2.txt", data1);
+console.log("buffer: ", process.memoryUsage().rss);
+
+// 큰 파일 스트림으로 복사
+console.log("before: ", process.memoryUsage().rss);
+const readStream = fs.createReadStream("./big.txt");
+const writeStream = fs.createWriteStream("./big3.txt");
+readStream.pipe(writeStream);
+readStream.on("end", () => {
+  console.log("stream: ", process.memoryUsage().rss);
+});
