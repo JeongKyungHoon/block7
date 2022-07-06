@@ -117,3 +117,30 @@ import { promises as fsProm } from "fs";
 // readStream.on("end", () => {
 //   console.log("stream: ", process.memoryUsage().rss);
 // });
+
+fsProm
+  .access("./test", fs.constants.F_OK | fs.constants.W_OK | fs.constants.R_OK) // << 폴더 유뮤 확인
+  .then(() => {
+    return Promise.reject("폴더 이미 있음");
+  })
+  .catch((err) => {
+    if (err.code === "ENOENT") {
+      console.log("폴더 없음");
+      return fsProm.mkdir("./test");
+    }
+    return Promise.reject(err);
+  })
+  .then(() => {
+    console.log("폴더 생성 완료");
+    return fsProm.open("./test/test.js", "w"); // w는 쓰기, 자동생성 / r 읽기 / a 추가
+  })
+  .then((fd) => {
+    console.log("빈 파일 생성", fd);
+    fsProm.rename("./test/test.js", "./test/newTest.js");
+  })
+  .then(() => {
+    console.log("이름 바꾸기 성공");
+  })
+  .catch((err) => {
+    console.error(err);
+  });
