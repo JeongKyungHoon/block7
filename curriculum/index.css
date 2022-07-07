@@ -1,0 +1,71 @@
+html {
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.h1 > ol,
+.h1 > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+}
+.h2 > ol,
+.h2 > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+.h3 > ol,
+.h3 > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+.h4 > ol,
+.h4 > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.h5 > ol,
+.h5 > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.h6 > ol,
+.h6 > ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tooltip {
+  margin: 0;
+  padding: 0.1rem 0.2rem;
+  display: inline;
+  background-color: lightskyblue;
+  border-radius: 3px;
+  color: inherit;
+  text-decoration: inherit;
+}
+.tooltip-inner {
+  display: none;
+  position: absolute;
+  padding: 0.5rem;
+  background-color: lightskyblue;
+  left: 0;
+  max-width: 70%;
+  margin-top: 0.5rem;
+  margin-left: 5rem;
+  border-radius: 0.5rem;
+}
+.tooltip:hover .tooltip-inner {
+  display: block;
+}
