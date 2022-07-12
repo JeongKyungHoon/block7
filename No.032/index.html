@@ -4,12 +4,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>테스팅!</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      async function formSubmit(e) {
+        e.preventDefault();
+        try {
+          const res = await axios.post("/post/user", {
+            name: e.target.name.value,
+          });
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+        e.target.name.value = "";
+        return false;
+      }
+      async function loadUser(e) {
+        console.log(e);
+        console.log(document.cookie);
+        try {
+          const users = (await axios.get("/user")).data;
+          console.log(users);
+          const userDataDiv = document.getElementById("user-data");
+          userDataDiv.innerHTML = "";
+          for (const item in users) {
+            const tempDiv = document.createElement("div");
+            tempDiv.classList.add("user-data-item");
+            tempDiv.innerHTML = `${users[item]} : ${new Date(
+              +item
+            ).toLocaleString()}`;
+            userDataDiv.append(tempDiv);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    </script>
   </head>
-  <body>
+  <body onunload="document.cookie = ''">
     테스트 텍스트
-    <form action="/post/user" method="post">
+    <!-- <form action="/post/user" method="post" onsubmit="formSubmit"> -->
+    <form onsubmit="return formSubmit(event)">
       <input id="name" name="name" type="text" />
       <button type="submit">보내기</button>
     </form>
+    <div>
+      <button onclick="loadUser(event)">불러오기</button>
+    </div>
+    <div id="user-data"></div>
   </body>
 </html>
